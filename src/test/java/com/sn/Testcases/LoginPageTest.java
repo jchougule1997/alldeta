@@ -58,7 +58,7 @@ public class LoginPageTest extends TestBase
 		//extentTest = extent.startTest("SNLogoTest");
 		boolean flag=loginPage.validateImage();
 		//Assert.assertTrue(flag);
-		Assert.assertEquals(flag,false);
+		Assert.assertEquals(flag,true);
 	}
 
 

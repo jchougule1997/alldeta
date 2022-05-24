@@ -16,8 +16,6 @@ public class ResolveInfo extends TestBase
 
 	TestBase t = new TestBase();
 	
-	
-	
 	@FindBy(xpath=("//span[normalize-space()='Resolution Information']"))
 	WebElement ClickResInfo;
 	
@@ -57,6 +55,7 @@ public class ResolveInfo extends TestBase
 	//Action:-
 	public String VerifyTitle()
 	{
+		
 	return t.driver.getTitle();
 	
 	}
@@ -72,7 +71,7 @@ public class ResolveInfo extends TestBase
 		//Sort.click();
 		//LinkText.click();
 		
-		
+		//copy the value of incident number  
 		String IncidentNo = Incidentnumber.getAttribute("value");
 		System.out.println("New Incident Number" +IncidentNo);
 		ClickResInfo.click();

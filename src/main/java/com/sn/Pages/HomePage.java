@@ -44,13 +44,10 @@ public class HomePage extends TestBase
 		String drpdwn = "document.querySelector(\"body > dps-app\").shadowRoot.querySelector(\"div > header > dps-navigation-header\").shadowRoot.querySelector(\"header > div > div.dps-navigation-header-utility > ul > li:nth-child(2) > dps-login\").shadowRoot.querySelector(\"div > button\")"+ ".click()";
 		((JavascriptExecutor)driver).executeScript(drpdwn);
 
-
 		//Clicking on start build
 		//Shadow-root element
 
-
 		Thread.sleep(10000);
-
 		String StartBuild = "document.querySelector(\"body > dps-app\").shadowRoot.querySelector(\"div > header > dps-navigation-header\").shadowRoot.querySelector(\"header > dps-navigation-header-dropdown > dps-navigation-login-management\").shadowRoot.querySelector(\"dps-navigation-header-dropdown-content > dps-navigation-section:nth-child(1) > dps-navigation-instance-management\").shadowRoot.querySelector(\"div > div:nth-child(2) > dps-content-stack:nth-child(5) > dps-button\").shadowRoot.querySelector(\"button\")" + ".click()";
 		((JavascriptExecutor)driver).executeScript(StartBuild);
 		System.out.println("Clicked on start build Button");
@@ -89,9 +86,5 @@ public class HomePage extends TestBase
 
 		return new IncidentCreate();
 	}
-
-
-
-
 
 }
