@@ -32,7 +32,7 @@ public class InProgress extends TestBase
 		
 		}
 		
-		public  OnHold InProgressState() throws InterruptedException 
+		public  OnHoldInfo InProgressState() throws InterruptedException 
 		{
 			//sysverb.click();
 			//Thread.sleep(1000);
@@ -52,7 +52,7 @@ public class InProgress extends TestBase
 			
 			Update.click();
 								
-			return new OnHold();
+			return new OnHoldInfo();
 			
 		}
 

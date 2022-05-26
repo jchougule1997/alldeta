@@ -11,7 +11,7 @@ public class TestUtil
 		ArrayList<Object[]> myData=new ArrayList<Object[]>();
 		try 
 		{
-			reader=new Xls_Reader("C:\\Users\\Tathagat\\eclipse-workspace\\SN-POC\\src\\main\\java\\com\\testdata\\TestData2.xlsx");
+			reader=new Xls_Reader("C:\\Users\\jalindar.chougule\\git\\SN-POCNEW\\src\\main\\java\\com\\testdata\\TestData2.xlsx");
 			reader.addColumn("IncidentData","status");
 			reader.addColumn("ResolveNotes","Status");
 		}
@@ -21,14 +21,8 @@ public class TestUtil
 		}
 		for(int rowNum=2;rowNum<=reader.getRowCount(Sheetname);rowNum++)
 		{
-			/*String caller=reader.getCellData("IncidentData","caller",rowNum);
-			System.out.println(caller);
-			String Shortdiscription=reader.getCellData("IncidentData","Shortdiscription",rowNum);
-			System.out.println(Shortdiscription);
-			//reader.setCellData("IncidentData","status", rowNum, "Pass");
-			Object ob[]= {caller, Shortdiscription};
-			myData.add(ob);*/
-			if(Sheetname.equals("IncidentData") )
+			
+			if(Sheetname.equals("IncidentData") )   //1
 			{
 			String caller=reader.getCellData("IncidentData","caller",rowNum);
 			System.out.println(caller);
@@ -38,18 +32,55 @@ public class TestUtil
 			Object ob[]= {caller, shortdiscription};
 			myData.add(ob);
 			}
-			else
+			
+			else if(Sheetname.equals("ResolveNotes"))     //2
 			{
 			String caller=reader.getCellData("ResolveNotes","caller",rowNum);
 			String shortdiscription=reader.getCellData("ResolveNotes","shortdiscription",rowNum);
 			String ResolveNotesData=reader.getCellData("ResolveNotes","ResolveNotesData",rowNum);
+			//String Additiondiscr =reader.getCellData("ResolveNotes", "Additiondiscr", rowNum);
 			
-			System.out.println(ResolveNotesData);
+			//System.out.println(Additiondiscr);
 			//String ChildShortdescription=reader.getCellData("IncidentData","childshortdescr",rowNum);
 			//System.out.println(ChildShortdescription);
 			reader.setCellData("ResolveNotes","Status", rowNum, "Pass");
 			Object ob2[]= {caller,shortdiscription,ResolveNotesData};
 			myData.add(ob2);
+			}
+			else if(Sheetname.equals("datahold"))     //3
+			{
+				String caller=reader.getCellData("datahold","caller",rowNum);
+				String shortdiscription=reader.getCellData("datahold","shortdiscription",rowNum);
+				String Additiondiscr=reader.getCellData("datahold","Additiondiscr",rowNum);
+				
+				   System.out.println(Additiondiscr);
+				//String ChildShortdescription=reader.getCellData("IncidentData","childshortdescr",rowNum);
+				//System.out.println(ChildShortdescription);
+				//reader.setCellData("holddata","Status", rowNum, "Pass");
+				Object ob3[]= {caller,shortdiscription,Additiondiscr};
+				myData.add(ob3);
+			}
+			else if(Sheetname.equals("datacancel")) {
+				String caller=reader.getCellData("datacancel","caller",rowNum);
+				String shortdiscription=reader.getCellData("datacancel","shortdiscription",rowNum);
+				//String CancelData=reader.getCellData("datacancel","ResolveNotesData",rowNum);
+				
+				System.out.println(shortdiscription);
+				//String ChildShortdescription=reader.getCellData("IncidentData","childshortdescr",rowNum);
+				//System.out.println(ChildShortdescription);
+				reader.setCellData("CancelData","Status", rowNum, "Pass");
+				Object ob4[]= {caller,shortdiscription};
+				myData.add(ob4);
+			}
+			else {
+				String caller=reader.getCellData("dataclose","caller",rowNum);
+				String shortdiscription=reader.getCellData("dataclose","shortdiscription",rowNum);
+				String CloseData=reader.getCellData("dataclose","resolvenotes",rowNum);
+				
+				System.out.println(shortdiscription);
+				
+				Object ob3[]= {caller,shortdiscription,CloseData};
+				myData.add(ob3);
 			}
 			
 		}

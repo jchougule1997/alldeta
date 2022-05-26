@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.sn.Testcases.HomePageTest">
+      <class name="com.sn.Testcases.OnHoldTest">
         <methods>
-          <include name="SearchIncident"/>
           <include name="teardown"/>
           <include name="setup"/>
+          <include name="onhold"/>
         </methods>
-      </class> <!-- com.sn.Testcases.HomePageTest -->
+      </class> <!-- com.sn.Testcases.OnHoldTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

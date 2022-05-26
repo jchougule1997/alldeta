@@ -45,7 +45,7 @@ public class TestBase
 	public TestBase(){
 		try {
 			p=new Properties();
-			FileInputStream f=new FileInputStream("C:\\Users\\Tathagat\\eclipse-workspace\\SN-POC\\src\\main\\java\\com\\sn\\Properties\\Config.properties" );
+			FileInputStream f=new FileInputStream("C:\\Users\\jalindar.chougule\\git\\SN-POCNEW\\src\\main\\java\\com\\sn\\Properties\\Config.properties" );
 			p.load(f);
 
 		} catch (IOException e) {

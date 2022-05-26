@@ -17,7 +17,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ExcelUtilities {
-	static String filePath=System.getProperty("user.dir")+"\\src\\main\\java\\com\\sca\\resources\\TestData2..xlsx";
+	static String filePath="C:\\Users\\jalindar.chougule\\git\\SN-POCNEW\\src\\main\\java\\com\\testdata\\TestData2.xlsx";
 	//static String filePath="C:\\Users\\avanti.joshi\\Documents\\GitHub\\AmazonFunctions_Testing\\Salesforce_Automation\\Sales_Cloud_Automation\\src\\test\\java\\resources\\TestData..xlsx";
 
 
