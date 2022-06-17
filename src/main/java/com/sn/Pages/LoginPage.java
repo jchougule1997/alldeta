@@ -54,10 +54,10 @@ public class LoginPage extends TestBase {
 	{
 		
 			uname.sendKeys(un);
-			System.out.println(un);
+			//System.out.println(un);
 			NextBtn.click();
 			password.sendKeys(pass);
-			System.out.println(pass);
+			//System.out.println(pass);
 			Loginbtn.click();
 			WebDriverWait wait = new WebDriverWait(driver, 5);
 			wait.until(ExpectedConditions.visibilityOf(Errormsg1));

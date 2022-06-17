@@ -3,7 +3,9 @@ package com.sn.Testcases;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -48,16 +50,18 @@ static String wbsheet="VIPIncidentData";
 	  public void createVIPIncident(String Caller,String Shortdescription) throws InterruptedException {
 		Createvipincident.ClickonNewButton(); 
 		Createvipincident.VIPIncident(Caller,Shortdescription);
-	    String actualTitle = Createvipincident.verifyIncidentPage(); 
+	    String actualTitle = Createvipincident.verifyIncidentPage();
+	    if()
 	    
 	    System.out.println("verifing title : " + actualTitle);
-	    Assert.assertEquals(0, 0);
-	    Assert.assertEquals(actualTitle, "Incidents [Portal view] | ServiceNow", "Incident created");
+	    Assert.assertEquals(actualTitle, "Incidents [Portal view] | ServiceNow");
+	   // Assert.assertEquals(0, 0);
 	
 	}
 	
 	/*
-	 * public void resolveIndcident(String ResolveNotesData) {
-	 * Createvipincident.resolveIncident(ResolveNotesData); }
+	 * @AfterMethod public void close_Browser() { driver.quit(); }
 	 */
+	
+	
 }
