@@ -16,52 +16,55 @@ import com.sn.Pages.HomePage;
 import com.sn.Pages.LoginPage;
 import com.sn.utilities.TestUtil;
 
-public class CreateVIPIncidentTest extends TestBase{
-	
+public class CreateVIPIncidentTest extends TestBase {
+
 	LoginPage loginpage;
 	HomePage homepage;
 	CreateVIPIncident Createvipincident;
-	
-static String wbsheet="VIPIncidentData";
-	
+
+	static String wbsheet = "VIPIncidentData";
+
 	public CreateVIPIncidentTest() {
 
 		super();
 	}
-	
+
 	@BeforeMethod
-	public void setup() throws InterruptedException
-	{
+	public void setup() throws InterruptedException {
 		launch();
 		loginpage = new LoginPage();
+		driver.switchTo().frame(0);
 		homepage = loginpage.LoginData(p.getProperty("un"), p.getProperty("pass"));
-		Createvipincident = homepage.SearchIncident();	
+		Createvipincident = homepage.SearchIncident();
 	}
-	
+
 	@DataProvider
-	public Iterator<Object[]> getIncidentData()
-	{
-	ArrayList<Object[]> testData=TestUtil.getDataFromExcel(wbsheet);
-	return testData.iterator();
-	
+	public Iterator<Object[]> getIncidentData() {
+		ArrayList<Object[]> testData = TestUtil.getDataFromExcel(wbsheet);
+		return testData.iterator();
+
 	}
-	
+
 	@Test(dataProvider = "getIncidentData")
-	  public void createVIPIncident(String Caller,String Shortdescription) throws InterruptedException {
-		Createvipincident.ClickonNewButton(); 
-		Createvipincident.VIPIncident(Caller,Shortdescription);
-	    String actualTitle = Createvipincident.verifyIncidentPage();
-	    if()
-	    
-	    System.out.println("verifing title : " + actualTitle);
-	    Assert.assertEquals(actualTitle, "Incidents [Portal view] | ServiceNow");
-	   // Assert.assertEquals(0, 0);
-	
+	public void createVIPIncident(String Caller, String Shortdescription) throws InterruptedException {
+		Createvipincident.ClickonNewButton();
+
+		Createvipincident.VIPIncident(Caller, Shortdescription);
+
+		String actualTitle = Createvipincident.verifyIncidentPage();
+
+		String expectedtitle = "Incidents [Portal view] | ServiceNow";
+
+		Assert.assertEquals(actualTitle, expectedtitle, "The Title is not match,assert is failed");
+
+		System.out.println("The Actual Title is  : " + actualTitle);
+
 	}
-	
-	/*
-	 * @AfterMethod public void close_Browser() { driver.quit(); }
-	 */
-	
-	
+
+	@AfterMethod
+
+	public void close_Browser() {
+		driver.quit();
+	}
+
 }

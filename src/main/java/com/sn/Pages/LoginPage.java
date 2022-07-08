@@ -12,76 +12,39 @@ import com.sn.Commons.TestBase;
 public class LoginPage extends TestBase {
 
 	TestBase t = new TestBase();
-	
-	@FindBy(id = "username")
-	WebElement uname;
-	
-	@FindBy(id = "usernameSubmitButton")
-	WebElement NextBtn;
-	
-	@FindBy(id = "password")
-	WebElement password;
-	
-	@FindBy(id = "submitButton")
-	WebElement Loginbtn;
-	
-	@FindBy(id = "errorPlaceholder")
+
+	@FindBy(xpath = "//span[@class='dp-invalid-login-msg']")
 	WebElement Errormsg1;
-	
-	public LoginPage()
-	{
+
+	@FindBy(xpath = "//input[@id='user_name']")
+	WebElement username;
+
+	@FindBy(xpath = "//input[@id='user_password']")
+	WebElement password;
+
+	@FindBy(xpath = "//button[@id='sysverb_login']")
+	WebElement loginbtn;
+
+	public LoginPage() {
 		PageFactory.initElements(t.driver, this);
 	}
-	
-	
-	public HomePage LoginData(String un, String pass) throws InterruptedException
-	{
-		
-		uname.sendKeys(un);
+
+	public HomePage LoginData(String un, String pass) throws InterruptedException {
+
+		username.sendKeys(un);
 		System.out.println(un);
-		NextBtn.click();
-		Thread.sleep(3000);
 		password.sendKeys(pass);
 		System.out.println(pass);
-		Loginbtn.click();
-	
-		Thread.sleep(15000);
+		loginbtn.click();
+
 		return new HomePage();
-		
+
 	}
-	
-	public String Invalidlogin(String un, String pass)
-	{
-		
-			uname.sendKeys(un);
-			//System.out.println(un);
-			NextBtn.click();
-			password.sendKeys(pass);
-			//System.out.println(pass);
-			Loginbtn.click();
-			WebDriverWait wait = new WebDriverWait(driver, 5);
-			wait.until(ExpectedConditions.visibilityOf(Errormsg1));
-			
-			String errormsg1 = Errormsg1.getText(); 
-			System.out.println("Error message is:" +errormsg1);
-			String expectederrormsg = "?Your username or password is invalid. Please try again or reset your password. If on mobile, please reset from your desktop device.";
-			
-			Assert.assertEquals(errormsg1, expectederrormsg, "Testcase passed");
-			return errormsg1;
-		
-	
-		
-	}
-	
-	
-	/*
-	 * public String LoginVerify() { return LoginVerify }
-	 */
-	
-	public String verifyLogin()
-	{
+
+	public String verifyLogin() {
+
 		return t.driver.getTitle();
-		
+
 	}
 
 }

@@ -8,6 +8,7 @@
     <classes>
       <class name="com.sn.Testcases.CreateVIPIncidentTest">
         <methods>
+          <include name="close_Browser"/>
           <include name="setup"/>
           <include name="createVIPIncident" invocation-numbers="0"/>
         </methods>

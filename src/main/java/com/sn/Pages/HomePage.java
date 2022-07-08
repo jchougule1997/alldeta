@@ -14,72 +14,42 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.sn.Commons.TestBase;
 import com.sn.utilities.ExcelUtilities;
 
-public class HomePage extends TestBase
-{
+public class HomePage extends TestBase {
 	TestBase t = new TestBase();
-	
-	
+
 	@FindBy(id = "filter")
 	WebElement TypeIncident;
-	
+
 	@FindBy(xpath = "//*[@id=\"4fed4395c0a8016400fcf06c27b1e6c6\"]/div/div")
 	WebElement ClickSearch;
-	public HomePage()
-	{
+
+	public HomePage() {
 		PageFactory.initElements(t.driver, this);
 	}
-	
-	public String VerifyTitle()
-	{
-	return t.driver.getTitle();
-	
+
+	public String VerifyTitle() {
+		return t.driver.getTitle();
+
 	}
 
-	
-	public CreateVIPIncident SearchIncident() throws InterruptedException 
-	{
-		Thread.sleep(15000);
-		String drpdwn = "document.querySelector(\"body > dps-app\").shadowRoot.querySelector(\"div > header > dps-navigation-header\").shadowRoot.querySelector(\"header > div > div.dps-navigation-header-utility > ul > li:nth-child(2) > dps-login\").shadowRoot.querySelector(\"div > button\")"+ ".click()";
-		((JavascriptExecutor)driver).executeScript(drpdwn);
-		
-		//Clicking on start build
-				//Shadow-root element
-		
-		 
-		Thread.sleep(15000);
-				String StartBuild = "document.querySelector(\"body > dps-app\").shadowRoot.querySelector(\"div > header > dps-navigation-header\").shadowRoot.querySelector(\"header > dps-navigation-header-dropdown > dps-navigation-login-management\").shadowRoot.querySelector(\"dps-navigation-header-dropdown-content > dps-navigation-section:nth-child(1) > dps-navigation-instance-management\").shadowRoot.querySelector(\"div > div:nth-child(2) > dps-content-stack:nth-child(5) > dps-button\").shadowRoot.querySelector(\"button\")" + ".click()";
-				((JavascriptExecutor)driver).executeScript(StartBuild);
-		
-				Thread.sleep(5000);
-				//Switch to new tab
-				ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
-				//driver.switchTo().window(tabs2.get(0));
-			    driver.switchTo().window(tabs2.get(1));
-			    System.out.println(tabs2);
-			    
-			    
-			    Thread.sleep(10000);
-			    //Enter incident for search
-			    
-				TypeIncident.sendKeys("Incident");
-				Thread.sleep(3000);
-				ClickSearch.click();
-				//System.out.println("Clicked on Incident");
-				Thread.sleep(5000);
-				if(ClickSearch.isDisplayed())
-				{
-					System.out.println("clicked on incident option");
-				}
-				else
-				{
-					System.out.println("Not able to click on incident");
-				}
-				
-				return new CreateVIPIncident();
+	public CreateVIPIncident SearchIncident() throws InterruptedException {
+
+		// Switch to new tab
+		ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
+		driver.switchTo().window(tabs2.get(0));
+		System.out.println(tabs2);
+
+		TypeIncident.sendKeys("Incident");
+
+		ClickSearch.click();
+
+		if (ClickSearch.isDisplayed()) {
+			System.out.println("clicked on incident option");
+		} else {
+			System.out.println("Not able to click on incident");
+		}
+
+		return new CreateVIPIncident();
 	}
-	
-	
-	
-	
 
 }

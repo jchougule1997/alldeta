@@ -36,32 +36,28 @@ public class TestBase {
 	public static WebDriver driver;
 	public static Properties p;
 	public static EventFiringWebDriver e_driver;
-	//public static WebEventListener eventListener;
-	
-	//To read properties file
-	public TestBase(){
+
+	// To read properties file
+	public TestBase() {
 		try {
-			p=new Properties();
-			FileInputStream f=new FileInputStream("C:\\Users\\LENOVO\\eclipse-workspace\\SN-POC\\src\\main\\java\\com\\sn\\Properties\\Config.properties" );
+			p = new Properties();
+			FileInputStream f = new FileInputStream(
+					"C:\\Users\\jalindar.chougule\\git\\Service_NowProject\\src\\main\\java\\com\\sn\\Properties\\Config.properties");
 			p.load(f);
 			;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	//To launch driver
+	// To launch driver
 	public void launch() {
-		if(p.getProperty("browser").equalsIgnoreCase("chrome"))
-		{
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-		driver=new ChromeDriver(options);
-		}
-		else
-		{
+		if (p.getProperty("browser").equalsIgnoreCase("chrome")) {
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--disable-notifications");
+			driver = new ChromeDriver(options);
+		} else {
 			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions options1 = new FirefoxOptions();
 			options1.addArguments("--disable-notifications");
@@ -71,128 +67,108 @@ public class TestBase {
 		driver.get(p.getProperty("url"));
 		driver.manage().window().maximize();
 		driver.manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 		e_driver = new EventFiringWebDriver(driver);
-		//eventListener = new WebEventListener();
-		//e_driver.register(eventListener);      giving error for this line
+		// eventListener = new WebEventListener();
+		// e_driver.register(eventListener); giving error for this line
 		driver = e_driver;
 
 	}
 
-	public  boolean verify(By webEle) {
-		boolean check=driver.findElement(webEle).isDisplayed();
+	public boolean verify(By webEle) {
+		boolean check = driver.findElement(webEle).isDisplayed();
 		System.out.println(check);
 		return check;
 
 	}
-	
+
 	public void navigate() {
 		driver.navigate().refresh();
 	}
-	/*
-	 * public void navigate() { driver.navigate().refresh(); }
-	 */
 
-	public  void clickOnElement(By webEle)
-	{
+	public void clickOnElement(By webEle) {
 		driver.findElement((webEle)).click();
 	}
 
-	public  void sendKey(By webEle,String text) {
+	public void sendKey(By webEle, String text) {
 		driver.findElement(webEle).sendKeys(text);
 	}
 
-	public  void clickoncheckbox(By webEle) {
+	public void clickoncheckbox(By webEle) {
 
-		boolean check=driver.findElement(webEle).isSelected();
-		if(!check)
-		{
+		boolean check = driver.findElement(webEle).isSelected();
+		if (!check) {
 			driver.findElement(webEle).click();
 
 		}
 	}
+
 	public String titleTest() {
 		return driver.getTitle();
 	}
 
-	public  void pressEnter() {
-		Actions action=new Actions(driver);
+	public void pressEnter() {
+		Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER);
 	}
-	public  void pressEnter(WebElement ele) {
-		///Actions action=new Actions(driver);
-		//action.sendKeys(Keys.ENTER);
+
+	public void pressEnter(WebElement ele) {
+		/// Actions action=new Actions(driver);
+		// action.sendKeys(Keys.ENTER);
 		ele.sendKeys(Keys.ENTER);
 	}
 
-	public  void scrollupto(By webEle) {
-		JavascriptExecutor js=(JavascriptExecutor) driver;
-		js.executeScript("arguments[0].scrollIntoView();",webEle);
+	public void scrollupto(By webEle) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", webEle);
 
 	}
 
-	public  void clickonElementbyjs(WebElement webEle) {
-		JavascriptExecutor js=(JavascriptExecutor)driver;
+	public void clickonElementbyjs(WebElement webEle) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", webEle);
 	}
 
-	public  String getText(By webEle) {
-		String gettext=driver.findElement(webEle).getText();
+	public String getText(By webEle) {
+		String gettext = driver.findElement(webEle).getText();
 		return gettext;
 	}
-	
-	public  String getText(WebElement webEle) {
-		String gettext=driver.findElement((By) webEle).getText();
-		return gettext;
-	}
-	
-//	public  String getText(WebElement ele) {
-//		String gettext=driver.findElement(;
-//		return gettext;
-//	}
 
-	public  boolean elementvisibletest(By webEle) {
-		boolean gettext=driver.findElement(webEle).isEnabled();
+	public String getText(WebElement webEle) {
+		String gettext = driver.findElement((By) webEle).getText();
 		return gettext;
 	}
-	
-	/*
-	 * public boolean elementvisibletest(WebElement webEle) { boolean
-	 * gettext=driver.findElement(webEle).isDisplayed(); return gettext; }
-	 */
 
-	public  void explicitWait(By ele) {
-		WebDriverWait wait=new WebDriverWait(driver,2);
+	public boolean elementvisibletest(By webEle) {
+		boolean gettext = driver.findElement(webEle).isEnabled();
+		return gettext;
+	}
+
+	public void explicitWait(By ele) {
+		WebDriverWait wait = new WebDriverWait(driver, 2);
 		wait.until(ExpectedConditions.elementToBeClickable(ele));
 	}
-	
-	public  void ExplicitWait(WebElement ele, String attribute , String value) {
-		WebDriverWait wait=new WebDriverWait(driver,2);
+
+	public void ExplicitWait(WebElement ele, String attribute, String value) {
+		WebDriverWait wait = new WebDriverWait(driver, 2);
 		wait.until(ExpectedConditions.attributeToBe(ele, attribute, value));
 	}
-	
-	
-	public  void Explicit_Wait(WebElement ele) {
-		WebDriverWait wait=new WebDriverWait(driver,2);
+
+	public void Explicit_Wait(WebElement ele) {
+		WebDriverWait wait = new WebDriverWait(driver, 2);
 		wait.until(ExpectedConditions.visibilityOfAllElements(ele));
 	}
-	public static void takeScreenshotAtEndOfTest() throws IOException {
-		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		String currentDir = System.getProperty("C:\\Users\\LENOVO\\eclipse-workspace\\SN-POC");
-		FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + System.currentTimeMillis() + ".png"));
-	}
-	
+
 	public WebElement expandRootElement(WebElement element) {
-		WebElement ele = (WebElement) ((JavascriptExecutor) driver)
-.executeScript("return arguments[0].shadowRoot",element);
+		WebElement ele = (WebElement) ((JavascriptExecutor) driver).executeScript("return arguments[0].shadowRoot",
+				element);
 		return ele;
 	}
-	
-	public void dropdown(WebElement element, int index) {
-		Select select=new Select(element);
+
+	public void dropdown(WebElement element, int index) { //
+		Select select = new Select(element);
 		select.selectByIndex(index);
-		
-		
+
 	}
 
 }
