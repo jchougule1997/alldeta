@@ -10,9 +10,8 @@
 			<!-- <class name="com.sn.Testcases.HomePageTest"/> -->
 			<!-- <class name="com.sn.Testcases.IncidentCreateTest"/> -->
 			<!--<class name="com.sn.Testcases.ResolveInfoTest" /> -->
-			
 			<class name="com.sn.Testcases.ResolveInfoTest"/>
-			
+		
 		</classes>
 	</test> <!-- DemoTest -->
 </suite> <!-- DemoSuite -->

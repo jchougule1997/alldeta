@@ -24,54 +24,46 @@ import com.sn.Pages.LoginPage;
 import com.sn.utilities.IncidentUtil;
 import com.sn.utilities.TestUtil;
 
-
-
 public class HomePageTest extends TestBase {
 
 	LoginPage loginpage;
 	HomePage homepage;
 	IncidentCreate incidentcreate;
 
-
 	@BeforeMethod
-	public void setup() throws InterruptedException, IOException 
-	{
+	public void setup() throws InterruptedException, IOException {
 		launch();
 		loginpage = new LoginPage();
+		driver.switchTo().frame(0);
 		homepage = loginpage.LoginData(p.getProperty("un"), p.getProperty("pass"));
-		
+
 	}
 
-	
-	@Test(priority=1) 
-	public void verify() throws InterruptedException 
-	{ 
-		String title = homepage.VerifyTitle(); 
-		System.out.println("Home page Title is" +title);
-		Assert.assertEquals(title, "ServiceNow SignOn", "Title not matched");
+	@Test(priority = 1)
+	public void verify() throws InterruptedException {
+		String title = homepage.VerifyTitle();
+		System.out.println("Home page Title is" + title);
+		Assert.assertEquals(title, "ServiceNow", "Title not matched");
 
-		String exp ="ServiceNow SignOn";
-		if(title.equalsIgnoreCase( exp)) {
-			System.out.println("successfully loged in & opened home page");  
-		}else {
+		String exp = "ServiceNow";
+		if (title.equalsIgnoreCase(exp)) {
+			System.out.println("successfully loged in & opened home page");
+		} else {
 			System.out.println("successfully loged in but Not opened home page ");
 
 		}
-		
+
 	}
 
-	@Test(priority=2)
-	public void SearchIncident() throws InterruptedException
-	{
+	@Test(priority = 2)
+	public void SearchIncident() throws InterruptedException {
 		System.out.println("Executing SearchIncident test case");
 		incidentcreate = homepage.SearchIncident();
-		//System.out.println(incidentcreate);
 	}
 
 	@AfterMethod
-	public void teardown()
-	{
+	public void teardown() {
 		driver.quit();
 	}
-	
+
 }

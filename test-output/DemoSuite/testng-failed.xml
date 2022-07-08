@@ -10,7 +10,7 @@
         <methods>
           <include name="setup"/>
           <include name="teardown"/>
-          <include name="ResolveIncident"/>
+          <include name="ResolveIncident" invocation-numbers="0"/>
         </methods>
       </class> <!-- com.sn.Testcases.ResolveInfoTest -->
     </classes>

@@ -48,6 +48,7 @@ public class ResolveInfoTest extends TestBase {
 	public void setup() throws InterruptedException, IOException {
 		launch();
 		loginpage = new LoginPage();
+		driver.switchTo().frame(0);
 		homepage = loginpage.LoginData(p.getProperty("un"), p.getProperty("pass"));
 		homepage = new HomePage();
 		incidentcreate = homepage.SearchIncident();
@@ -70,12 +71,28 @@ public class ResolveInfoTest extends TestBase {
 
 		resolveinfo = incidentcreate.NewIncident(caller, shortdiscription);
 
+		System.out.println("test case of onhold data is run   ********************");
+
+		resolveinfo.onHold();
+
 		incidentresolve = resolveinfo.ResolveIncident(caller, shortdiscription, ResolveNotesData);
 
 		System.out.println("CallerName And ShortDiscription and ReolveNotes are" + incidentresolve);
+
+		System.out.println("test case of close state is run  **************");
+		
+		
+		
+		//resolveinfo.close();
+
+		// System.out.println("test case of canceldata is run ****************");
+
+		// resolveinfo.cancelData();
+
 	}
 
-	 @AfterMethod
+
+	@AfterMethod
 	public void teardown() {
 		driver.quit();
 	}

@@ -30,27 +30,16 @@ public class InProgressTest extends TestBase {
 		launch();
 		loginpage = new LoginPage();
 		homepage = loginpage.LoginData(p.getProperty("un"), p.getProperty("pass"));
-		// incidentcreate=homepage.SearchIncident();
-		// homepage = new HomePage();
 
 		incidentcreate = homepage.SearchIncident();
-		// incidentcreate = new IncidentCreate();
 		resolveinfo = incidentcreate.NewIncident(Caller, Shortdescription);
 
-		// incidentcreate=new IncidentCreate();
-		// resolveinfo=new ResolveInfo();
-		Thread.sleep(3000);
-
-		// searchincident=new SearchIncident();
-		// Assert.assertEquals(loginpage.verifyLogin(), "ServiveNow", "Login failed");
 	}
 
 	@Test(priority = 1)
 	public void verify() throws InterruptedException {
 		String title = resolveinfo.VerifyTitle();
 		System.out.println("This is Test1");
-		// System.out.println(title); Assert.assertEquals(title, "ServiceNow
-		// Developers", "Title not matched");
 	}
 
 	@Test(priority = 2)
@@ -58,9 +47,7 @@ public class InProgressTest extends TestBase {
 			throws InterruptedException {
 		System.out.println("This is Test2");
 		System.out.println("Executing NewIncident test case");
-		// ResolveInfo = homepage.SearchIncident();
 		incidentresolve = resolveinfo.ResolveIncident(caller, shortdiscription, ResolveNotesData);
-		// onhold=inprogress.InProgressState();
 	}
 
 	@AfterMethod

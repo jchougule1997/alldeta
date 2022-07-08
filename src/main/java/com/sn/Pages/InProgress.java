@@ -9,51 +9,44 @@ import org.openqa.selenium.support.ui.Select;
 
 import com.sn.Commons.TestBase;
 
-public class InProgress extends TestBase 
-{
+public class InProgress extends TestBase {
 	TestBase t = new TestBase();
-	
-	@FindBy(linkText=("Inquiry / Help"))
-	WebElement LinkText;
-	
-	@FindBy(xpath="//button[@id='sysverb_update']")
-	WebElement Update;
-	
-	//Initializing the Page Objects
-		public InProgress()
-		{
-			PageFactory.initElements(t.driver, this);
-		}
-		
-		//Action:-
-		public String VerifyTitle()
-		{
-		return t.driver.getTitle();
-		
-		}
-		
-		public  OnHoldInfo InProgressState() throws InterruptedException 
-		{
-			//sysverb.click();
-			//Thread.sleep(1000);
-			
-		    //driver.switchTo().frame(0);
-		    //driver.findElement(By.linkText("INC0000003")).click();
-			LinkText.click();
-			
-			
-			Select drpState = new Select(driver.findElement(By.name("incident.state")));
-			drpState.selectByVisibleText("In Progress");
-			System.out.println("Selected element: " + drpState);
-			
 
-			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("window.scrollBy(0,550)", "");
-			
-			Update.click();
-								
-			return new OnHoldInfo();
-			
-		}
+	@FindBy(linkText = ("Inquiry / Help"))
+	WebElement LinkText;
+
+	@FindBy(xpath = "//button[@id='sysverb_update']")
+	WebElement Update;
+
+	// Initializing the Page Objects
+	public InProgress() {
+		PageFactory.initElements(t.driver, this);
+	}
+
+	// Action:-
+	public String VerifyTitle() {
+		return t.driver.getTitle();
+
+	}
+
+	public OnHoldInfo InProgressState() throws InterruptedException {
+
+		LinkText.click();
+
+		Select drpState = new Select(driver.findElement(By.name("incident.state")));
+
+		drpState.selectByVisibleText("In Progress");
+
+		System.out.println("Selected element: " + drpState);
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		js.executeScript("window.scrollBy(0,550)", "");
+
+		Update.click();
+
+		return new OnHoldInfo();
+
+	}
 
 }

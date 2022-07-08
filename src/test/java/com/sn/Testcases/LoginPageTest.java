@@ -1,4 +1,5 @@
 package com.sn.Testcases;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -24,66 +25,39 @@ import com.sn.Pages.HomePage;
 import com.sn.Pages.LoginPage;
 import junit.framework.Assert;
 
-public class LoginPageTest extends TestBase 
-{
+public class LoginPageTest extends TestBase {
 	LoginPage loginPage;
 	HomePage homePage;
 
-
-	public LoginPageTest() throws IOException
-	{
+	public LoginPageTest() throws IOException {
 		super();
 	}
 
 	@BeforeMethod()
-	public void setup()throws Exception
-	{
+	public void setup() throws Exception {
 		launch();
-		loginPage= new LoginPage();
+		loginPage = new LoginPage();
 		homePage = new HomePage();
 
 	}
 
-	@Test(priority=1)
-	public void loginPageTitleTest()
-	{
-		//extentTest = extent.startTest("loginPageTitleTest");
-		String title=loginPage.validateLoginPageTitle();
-		Assert.assertEquals(title, "ServiceNow SignOn");
+	@Test(priority = 1)
+	public void loginPageTitleTest() {
+		String title = loginPage.validateLoginPageTitle();
+		Assert.assertEquals(title, "ServiceNow");
 	}
 
-	@Test(priority=2)
-	public void SNLogoTest()
-	{
-		//extentTest = extent.startTest("SNLogoTest");
-		boolean flag=loginPage.validateImage();
-		//Assert.assertTrue(flag);
-		Assert.assertEquals(flag,true);
-	}
+	@Test(priority = 3)
+	public void loginPageTest() throws InterruptedException {
 
-
-	@Test(priority=3)
-	public void loginPageTest() throws InterruptedException 
-	{
-		
-		
-		if(p.getProperty("isvalidcredential").equals("false"))
-		{
-			loginPage.Invalidlogin(p.getProperty("un"), p.getProperty("pass"));
-		}
-		else
-		{
+		driver.switchTo().frame(0);
 		homePage = loginPage.LoginData(p.getProperty("un"), p.getProperty("pass"));
-		}
-		
+
 	}
-		
-	
- //@AfterMethod()
-	public void TearDown()
-	{
+
+	@AfterMethod()
+	public void TearDown() {
 		driver.close();
 	}
-	
 
 }

@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suitecheck" thread-count="1">
+
+<listeners>
+	<listener class-name = "com.sn.Reports.ExtentReportNG"/>
+</listeners>
+  <test thread-count="1" name="Testcheck">
+    <classes>
+	  <!--class name="com.sn.Testcases.LoginTest"/-->
+      <!--class name="com.sn.Testcases.HomePageTest"/-->
+	  <!--class name = "com.sn.Testcases.IncidentCreateTest"/-->
+	  <class name = "com.sn.Testcases.ChildIncidentTest"/>
+
+	  
+    </classes>
+  </test> <!-- Testcheck -->
+</suite> <!-- Suitecheck -->
